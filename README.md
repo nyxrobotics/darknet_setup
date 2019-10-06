@@ -1,22 +1,22 @@
-# darknet_setup
-darknetの設定手順を記録します
+# darknet_setup  
+darknetの設定手順を記録します  
 環境:Ubuntu16.04, kernel:4.15.0-64-generic  
   
-1. darknetをクローン[1](今回はpjreddieの代わりにAlexeyABを使用)  
+1. darknetをクローン[1] (今回はpjreddieの代わりにAlexeyABを使用)  
 > git clone https://github.com/AlexeyAB/darknet  
 > cd darknet  
-
-2. makefileを編集[2]
+  
+2. makefileを編集[2]  
 - GPU,CUDNN,OPENCV,OPENMP,LIBSOを1に変更  
   
-3. openmp, opencvをインストール
+3. openmp, opencvをインストール  
 > sudo apt install libome-dev  
 > sudo apt install libopencv-dev  
   
-4. cuda9.0とcuDNN7.0をインストール[3]
+4. cuda9.0とcuDNN7.0をインストール[3]  
 ※長いので参考文献参照  
 ※著者はこの時点でnvidia-418とcuda-9-0を導入し、nvidia-smiではなぜかcuda10.1と認識された。/usr/local/cuda/version.txtにはCUDA Version 9.0.176と書かれていたため問題ないと判断して先にすすめる  
-　　
+  
 5. cmakeのアップグレード(3.5.1 -> 3.15.4)  
 darknetビルド時にUbuntuのaptで入る最新よりも新しいcmakeを要求されるので、現行の最新をインストール[4][5]  
 (バイナリは不要。ソースからビルドするべし)  
@@ -34,7 +34,15 @@ darknetビルド時にUbuntuのaptで入る最新よりも新しいcmakeを要�
 > make -j8  
   
 7. 自前のデータで学習[6]  
-> VoTTで出力したデータの場所へ移動(yolo-obj.cfgの存在するディレクトリ)  
+- VoTTで出力したデータの場所へ移動(yolo-obj.cfgの存在するディレクトリ)   
+- yolo-obj.cfgを編集、以下の２行の数値を変更  
+> batch=64  
+> subdivisions=64  
+- backupディレクトリ作成  
+> mkdir backup   
+- data/obj.dataを編集  
+> "backup = backup/" -> "backup = backup"  
+- 学習開始  
 > #以下darknet本体が~/workspace/darknet_workspace/darknetにある場合  
 > ~/workspace/darknet_workspace/darknet/darknet detector train ./data/obj.data ./yolo-obj.cfg  
   

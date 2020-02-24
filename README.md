@@ -10,7 +10,7 @@ darknetの設定手順を記録します
 - GPU,CUDNN,OPENCV,OPENMP,LIBSOを1に変更  
   
 3. openmp, opencvをインストール  
-> sudo apt install libome-dev  
+> sudo apt install libom-dev  
 > sudo apt install libopencv-dev  
   
 4. cuda9.0とcuDNN7.0をインストール[3]  

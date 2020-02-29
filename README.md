@@ -6,7 +6,7 @@ darknetの設定手順を記録します
 > git clone https://github.com/AlexeyAB/darknet  
 > cd darknet  
   
-2. makefileを編集[2]  
+2. Makefileを編集[2]  
 - GPU,CUDNN,OPENCV,OPENMP,LIBSOを1に変更  
   
 3. openmp, opencvをインストール  
